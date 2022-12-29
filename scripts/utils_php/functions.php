@@ -1,10 +1,14 @@
 <?php
 function getConfig()
 {
-    if (file_exists('../scripts/thisrun.txt')) {
-        return parse_ini_file('../scripts/thisrun.txt');
-    } elseif (file_exists('../scripts/firstrun.ini')) {
-        return parse_ini_file('../scripts/firstrun.ini');
+    $thisRun = __DIR__ . '/../thisrun.txt';
+    $firstRun = __DIR__ . '/../firstrun.ini';
+    if (file_exists($thisRun)) {
+        return parse_ini_file($thisRun);
+    } elseif (file_exists($firstRun)) {
+        return parse_ini_file($firstRun);
+    } else {
+        echo "<h1> No Config file found</h1>";
     }
 }
 ?>
