@@ -1,6 +1,6 @@
 <!-- TODO NEEDS REFACTORING -->
 <?php
-require_once('includes/functions.php');
+require('./scripts/utils_php/functions.php');
 $config = getConfig();
 $site_name = $config['SITE_NAME'] != "" ? $config['SITE_NAME'] : 'BirdNET-Pi';
 ?>

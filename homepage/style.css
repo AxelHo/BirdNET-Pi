@@ -918,6 +918,12 @@ pre#timer.bash {
   }
 }
 
+/* Inline Styles removed from php files */
+
 body::-webkit-scrollbar {
   display: none
+}
+
+.updatenumber {
+  width: 30px !important;
 }
