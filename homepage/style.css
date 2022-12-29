@@ -917,3 +917,7 @@ pre#timer.bash {
     opacity: 1;
   }
 }
+
+body::-webkit-scrollbar {
+  display: none
+}
