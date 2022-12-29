@@ -188,7 +188,7 @@ if(isset($_GET['ajax_detections']) && $_GET['ajax_detections'] == "true"  ) {
           </div>
             <div>
             <b><a class="a2" href="https://allaboutbirds.org/guide/<?php echo $comname;?>" target="top"><?php echo $todaytable['Com_Name'];?></a></b><br>
-            <a class="a2" href="https://wikipedia.org/wiki/<?php echo $sciname;?>" target="top"><i><?php echo $todaytable['Sci_Name'];?></i></a><br></td>
+            <a class="a2" href="https://<?php echo substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2)  ?>.wikipedia.org/wiki/<?php echo $sciname;?>" target="top"><i><?php echo $todaytable['Sci_Name'];?></i></a><br></td>
         </div></div>
           <td><b>Confidence:</b> <?php echo round((float)round($todaytable['Confidence'],2) * 100 ) . '%';?><br></td>
           <?php if(!isset($_GET['mobile'])) { ?>
@@ -253,7 +253,7 @@ if(isset($_GET['ajax_detections']) && $_GET['ajax_detections'] == "true"  ) {
   }
   </script>  
     <h3>Number of Detections</h3>
-    <table>
+    <table class="ci-todays-detections">
       <tr>
   <th>Total</th>
   <th>Today</th>
@@ -276,7 +276,7 @@ if(isset($_GET['ajax_detections']) && $_GET['ajax_detections'] == "true"  ) {
       </tr>
     </table>
 
-    <h3>Today's Detections — <input autocomplete="off" size="11" type="text" placeholder="Search..." id="searchterm" name="searchterm"></h3>
+   <h3>Today's Detections — <input autocomplete="off" size="11" type="text" placeholder="Search..." id="searchterm" name="searchterm"></h3>
 
     <div style="padding-bottom:10px" id="detections_table"><h3>Loading...</h3></div>
 

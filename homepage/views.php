@@ -1,4 +1,5 @@
 <?php 
+
 session_start();
 $user = shell_exec("awk -F: '/1000/{print $1}' /etc/passwd");
 $user = trim($user);
@@ -22,11 +23,7 @@ if (file_exists('./scripts/thisrun.txt')) {
 }
 ?>
 <link rel="stylesheet" href="style.css?v=8.05.22">
-<style>
-body::-webkit-scrollbar {
-  display:none
-}
-</style>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <div class="topnav" id="myTopnav">
 <form action="" method="GET" id="views">

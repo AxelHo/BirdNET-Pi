@@ -49,10 +49,10 @@ plt_top10_today = (df_plt_today['Com_Name'].value_counts()[:readings])
 df_plt_top10_today = df_plt_today[df_plt_today.Com_Name.isin(plt_top10_today.index)]
 
 # Set Palette for graphics
-pal = "Greens"
+pal = "OrRd"
 
 # Set up plot axes and titles
-f, axs = plt.subplots(1, 2, figsize=(10, 4), gridspec_kw=dict(width_ratios=[3, 6]), facecolor='#77C487')
+f, axs = plt.subplots(1, 2, figsize=(10, 4), gridspec_kw=dict(width_ratios=[3, 6]), facecolor='#fdf5e6')
 plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0, hspace=0)
 
 # generate y-axis order for all figures based on frequency
@@ -65,7 +65,7 @@ confmax = confmax.reindex(freq_order)
 
 # norm values for color palette
 norm = plt.Normalize(confmax.values.min(), confmax.values.max())
-colors = plt.cm.Greens(norm(confmax))
+colors = plt.cm.OrRd(norm(confmax))
 
 # Generate frequency plot
 plot = sns.countplot(y='Com_Name', data=df_plt_top10_today, palette=colors, order=freq_order, ax=axs[0])
@@ -134,7 +134,7 @@ pal = "Reds"
 
 # Set up plot axes and titles
 
-f, axs = plt.subplots(1, 2, figsize=(10, 4), gridspec_kw=dict(width_ratios=[3, 6]), facecolor='#77C487')
+f, axs = plt.subplots(1, 2, figsize=(10, 4), gridspec_kw=dict(width_ratios=[3, 6]), facecolor='#ffffff')
 plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0, hspace=0)
 
 # generate y-axis order for all figures based on frequency
