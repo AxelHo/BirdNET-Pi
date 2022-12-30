@@ -13,6 +13,8 @@
         window.birdnet = window.birdnet || {};
         window.birdnet.refresh = "<?php echo $config['RECORDING_LENGTH']; ?>"
         window.birdnet.dividedrefresh = (window.birdnet.refresh / 4) != 0 ? (window.birdnet.refresh / 4) : 1;
+        window.birdnet.isMobile = window.innerWidth < 500;
+        window.birdnet.mobileGetParam = window.birdnet.isMobile ? "&mobile=true" : "";
     </script>
     <script type="text/javascript" src="static/xhr.js"></script>
 </head>

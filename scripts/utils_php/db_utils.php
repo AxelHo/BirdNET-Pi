@@ -10,7 +10,7 @@ class DataLayer
     $db = new SQLite3($this->birdsDb, SQLITE3_OPEN_CREATE | SQLITE3_OPEN_READWRITE);
     if ($db == False) {
       echo "Database is busy";
-      return header("refresh: 0;");
+      header("refresh: 0;");
     }
     return $db;
   }
