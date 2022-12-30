@@ -927,3 +927,11 @@ body::-webkit-scrollbar {
 .updatenumber {
   width: 30px !important;
 }
+
+html[data-resolution="ci-desktop"] .ci-spectogramimage img {
+  width: 50%;
+}
+
+html[data-resolution="ci-mobile"] .ci-spectogramimage {
+  display: none;
+}
