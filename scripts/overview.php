@@ -119,7 +119,6 @@ if (isset($_GET['ajax_left_chart']) && $_GET['ajax_left_chart'] == "true") {
     var dialog = document.querySelector('dialog');
     dialogPolyfill.registerDialog(dialog);
 
-
   </script>
   <div class="overview-stats">
     <div class="left-column">
@@ -136,9 +135,10 @@ if (isset($_GET['ajax_left_chart']) && $_GET['ajax_left_chart'] == "true") {
         <h3>Loading...</h3>
       </div>
 
-      <h3>Currently Analyzing</h3>
-      <img class="ci-spectogramimage" id="spectrogramimage" src="/spectrogram.png?nocache=<?= time() ?>" />
-
+      <span class="ci-spectogramimage">
+        <h3>Currently Analyzing</h3>
+        <img id="spectrogramimage" src="/spectrogram.png?nocache=<?= time() ?>" />
+      </span>
 
     </div>
   </div>
