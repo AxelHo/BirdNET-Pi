@@ -1,7 +1,9 @@
 <?php
-require_once __DIR__ . '/utils_php/db_utils.php';
+
 require_once __DIR__ . '/utils_php/flickr.php';
-require_once __DIR__ . '/utils_php/functions.php';
+
+$dataLayer = new DataLayer;
+
 error_reporting(E_ERROR);
 ini_set('display_errors', 1);
 ini_set('session.gc_maxlifetime', 7200);
@@ -9,9 +11,8 @@ session_set_cookie_params(7200);
 session_start();
 $myDate = date('Y-m-d');
 $chart = "Combo-$myDate.png";
-$dataLayer = new DataLayer;
-$db = $dataLayer->getDb();
-$config = getConfig();
+$hasChart = file_exists('./Charts/' . $chart);
+
 $user = shell_exec("awk -F: '/1000/{print $1}' /etc/passwd");
 $home = shell_exec("awk -F: '/1000/{print $6}' /etc/passwd");
 $home = trim($home);
@@ -19,9 +20,11 @@ $home = trim($home);
 if (isset($_GET['fetch_chart_string']) && $_GET['fetch_chart_string'] == "true") {
   $myDate = date('Y-m-d');
   $chart = "Combo-$myDate.png";
+
   echo $chart;
   die();
 }
+
 
 if (isset($_GET['ajax_detections']) && $_GET['ajax_detections'] == "true" && isset($_GET['previous_detection_identifier'])) {
 
@@ -123,18 +126,7 @@ if (isset($_GET['ajax_left_chart']) && $_GET['ajax_left_chart'] == "true") {
     </div>
     <div class="right-column">
       <div class="chart">
-        <?php
-        $config = getConfig();
-        $refresh = $config['RECORDING_LENGTH'];
-        $dividedrefresh = $refresh / 4;
-        if ($dividedrefresh == 0) {
-          $dividedrefresh = 1;
-        }
-        $time = time();
-        if (file_exists('./Charts/' . $chart)) {
-          echo "<img id='chart' src=\"/Charts/$chart?nocache=$time\">";
-        }
-        ?>
+        <img id='chart' src="/Charts/<?= $hasChart ? $chart : '' ?>?nocache=<?= time() ?>" alt="<?= $hasChart ?>" />
       </div>
 
       <div id="most_recent_detection"></div>
@@ -145,13 +137,8 @@ if (isset($_GET['ajax_left_chart']) && $_GET['ajax_left_chart'] == "true") {
       </div>
 
       <h3>Currently Analyzing</h3>
-      <?php
-      $refresh = $config['RECORDING_LENGTH'];
-      $time = time();
-      echo "<img id=\"spectrogramimage\" src=\"/spectrogram.png?nocache=$time\">";
-      ?>
+      <img class="ci-spectogramimage" id="spectrogramimage" src="/spectrogram.png?nocache=<?= time() ?>" />
+
 
     </div>
   </div>
-
-  <!-- Refresh: <?php echo $refresh; ?> -->

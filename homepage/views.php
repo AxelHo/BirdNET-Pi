@@ -1,5 +1,10 @@
 <?php
 // TODO Needs refactoring
+
+
+
+
+
 session_start();
 $user = shell_exec("awk -F: '/1000/{print $1}' /etc/passwd");
 $user = trim($user);
@@ -13,8 +18,11 @@ if (!isset($_SESSION['behind'])) {
   <?php }
 }
 
-require('./scripts/utils_php/functions.php');
+require_once('scripts/utils_php/functions.php');
+require_once('scripts/utils_php/db_utils.php');
+// IN PHP THIS IS GLOBAL
 $config = getConfig();
+
 ?>
 <html>
 <?php include('includes/header.php') ?>

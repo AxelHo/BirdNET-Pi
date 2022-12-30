@@ -15,6 +15,7 @@
         window.birdnet.dividedrefresh = (window.birdnet.refresh / 4) != 0 ? (window.birdnet.refresh / 4) : 1;
         window.birdnet.isMobile = window.innerWidth < 500;
         window.birdnet.mobileGetParam = window.birdnet.isMobile ? "&mobile=true" : "";
+        document.querySelector("html").dataset.resolution = (window.birdnet.isMobile ? 'ci-mobile' : 'ci-desktop');
     </script>
     <script type="text/javascript" src="static/xhr.js"></script>
 </head>
