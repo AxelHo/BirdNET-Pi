@@ -7,8 +7,8 @@ function loadDetectionIfNewExists(previous_detection_identifier = undefined) {
 
             // only going to load left chart & 5 most recents if there's a new detection
             // loadLeftChart();
-            loadFiveMostRecentDetections();
-            refreshTopTen();
+            // loadFiveMostRecentDetections();
+            // refreshTopTen();
         }
     }
     xhttp.open("GET", "overview.php?ajax_detections=true&previous_detection_identifier=" + previous_detection_identifier, true);
@@ -44,11 +44,11 @@ window.setInterval(function () {
     if (typeof videoelement !== "undefined") {
         // don't refresh the detection if the user is playing the previous one's audio, wait until they're finished
         if (!!(videoelement.currentTime > 0 && !videoelement.paused && !videoelement.ended && videoelement.readyState > 2) == false) {
-            loadDetectionIfNewExists(videoelement.title);
+            // loadDetectionIfNewExists(videoelement.title);
         }
     } else {
         // image or audio didn't load for some reason, force a refresh in 5 seconds
-        loadDetectionIfNewExists();
+        // loadDetectionIfNewExists();
     }
     console.log('window.birdnet.dividedrefresh: ' + window.birdnet.dividedrefresh);
 }, window.birdnet.refresh * 1000);
@@ -67,10 +67,12 @@ function loadFiveMostRecentDetections() {
     xhttp.send();
 }
 window.addEventListener("load", function () {
-    loadDetectionIfNewExists();
+    // loadDetectionIfNewExists();
+    loadFiveMostRecentDetections();
 });
 
-// every $refresh seconds, this loop will run and refresh the spectrogram image
+// every refresh seconds, this loop will run and refresh the spectrogram image
 window.setInterval(function () {
-    document.getElementById("spectrogramimage").src = "/spectrogram.png?nocache=" + Date.now();
+    $('#spectrogramimage').attr('src', '/spectrogram.png?nocache=' + Date.now());
+    loadFiveMostRecentDetections();
 }, window.birdnet.refresh * 1000);
