@@ -75,5 +75,17 @@ class DataLayer
     }
     return $statement5->execute();
   }
+
+  function getMostRecentAjax($hard_limit = 5)
+  {
+
+    $statement0 = $this->getDb()->prepare('SELECT Time, Com_Name, Sci_Name, Confidence, File_Name FROM detections WHERE Date == Date(\'now\', \'localtime\')   ORDER BY Time DESC LIMIT ' . $hard_limit);
+    if ($statement0 == False) {
+      echo "Database is busy";
+      header("refresh: 0;");
+    }
+    return $statement0->execute();
+
+  }
 }
 ?>

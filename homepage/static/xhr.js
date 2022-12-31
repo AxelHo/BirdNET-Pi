@@ -58,8 +58,10 @@ window.setInterval(function () {
 function loadFiveMostRecentDetections() {
     const xhttp = new XMLHttpRequest();
     const xhrToday = "todays_detections.php?ajax_detections=true&display_limit=undefined&hard_limit=5" + window.birdnet.mobileGetParam;
+    // const xhrToday = "overview_ajax_detections.php?ajax_detections=true&display_limit=undefined&hard_limit=5" + window.birdnet.mobileGetParam;
     xhttp.onload = function () {
         if (this.responseText.length > 0 && !this.responseText.includes("Database is busy")) {
+            console.log('loadFiveMostRecentDetections response text: ' + this.responseText);
             document.getElementById("detections_table").innerHTML = this.responseText;
         }
     }

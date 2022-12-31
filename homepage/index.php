@@ -1,5 +1,9 @@
-<!-- TODO NEEDS REFACTORING -->
+<!-- TODO :NEEDS REFACTORING -->
+<!-- TODO: MAKE index.php obsolete what is it for? -->
 <?php
+// Jump directly into view.php
+header('Location: views.php' . (isset($_GET['filename']) ? '?view=Recordings&' + $_GET['filename'] : ''));
+
 require('./scripts/utils_php/functions.php');
 $config = getConfig();
 $site_name = $config['SITE_NAME'] != "" ? $config['SITE_NAME'] : 'BirdNET-Pi';
@@ -11,7 +15,8 @@ $site_name = $config['SITE_NAME'] != "" ? $config['SITE_NAME'] : 'BirdNET-Pi';
   <div class="banner">
     <?php include('includes/logo.php') ?>
     <?php require_once('includes/live_stream.php') ?>
-    <iframe src=/views.php <?php
-    echo (isset($_GET['filename']) ? '?view=Recordings&' + $_GET['filename'] : '');
-    ?> "></iframe>
+  </div>
+  <iframe src=/views.php <?php
+  echo (isset($_GET['filename']) ? '?view=Recordings&' + $_GET['filename'] : '');
+  ?> "></iframe>
 </html>

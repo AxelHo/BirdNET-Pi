@@ -1,11 +1,15 @@
 <?php
 // TODO Needs refactoring
 
+require_once('scripts/utils_php/functions.php');
+require_once('scripts/utils_php/db_utils.php');
 
 
+$session = getNewSession();
+// IN PHP THIS IS GLOBAL?
+$config = getConfig();
+$site_name = $config['SITE_NAME'] != "" ? $config['SITE_NAME'] : 'BirdNET-Pi';
 
-
-session_start();
 $user = shell_exec("awk -F: '/1000/{print $1}' /etc/passwd");
 $user = trim($user);
 $home = shell_exec("awk -F: '/1000/{print $6}' /etc/passwd");
@@ -18,10 +22,6 @@ if (!isset($_SESSION['behind'])) {
   <?php }
 }
 
-require_once('scripts/utils_php/functions.php');
-require_once('scripts/utils_php/db_utils.php');
-// IN PHP THIS IS GLOBAL
-$config = getConfig();
 
 ?>
 <html>
@@ -29,6 +29,10 @@ $config = getConfig();
 
 
 <body>
+  <div class="banner">
+    <?php include('includes/logo.php') ?>
+    <?php require_once('includes/live_stream.php') ?>
+  </div>
   <?php include('includes/topnav.php') ?>
   <div class="views">
     <?php

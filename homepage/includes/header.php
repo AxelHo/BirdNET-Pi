@@ -19,4 +19,5 @@
     <script type="text/javascript" src="static/xhr.js"></script>
     <script src="static/dialog-polyfill.js"></script>
     <script type="text/javascript" src="static/dialog.js"></script>
+    <script type="text/javascript" src="static/search.js"></script>
 </head>

@@ -11,4 +11,17 @@ function getConfig()
         echo "<h1> No Config file found</h1>";
     }
 }
+
+function getNewSession()
+{
+    // error_reporting(E_ERROR);
+    $maxtime = 7200;
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    ini_set('session.gc_maxlifetime', $maxtime);
+    session_set_cookie_params($maxtime);
+    session_start();
+    return "New Session maxtime:  " . $maxtime;
+
+}
 ?>
